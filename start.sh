@@ -6,7 +6,7 @@ set +e
 
 # 2. 환경 변수 및 경로 설정
 COMFYUI_DIR="/workspace/runpod-slim/ComfyUI"
-VENV_DIR="$COMFYUI_DIR/.venv-cu128"
+VENV_DIR="$COMFYUI_DIR/.venv"
 
 # 3. 가상환경 활성화 (매우 중요)
 # 도커 빌드 단계에서 생성된 venv가 있다면 사용, 없으면 시스템 파이썬 사용
@@ -33,7 +33,7 @@ if [ ! -d "$COMFYUI_DIR" ]; then
 fi
 
 # ComfyUI 서버 시작
-python3 main.py --listen 0.0.0.0 --port 8188 --disable-auto-launch &
+python main.py --listen 0.0.0.0 --port 8188 --disable-auto-launch &
 
 # 5. ComfyUI가 켜질 때까지 잠시 대기
 echo "Waiting 10s for ComfyUI to boot..."
@@ -44,7 +44,7 @@ sleep 10
 echo "Starting RunPod Handler..."
 
 if [ -f "/rp_handler.py" ]; then
-    python3 -u /rp_handler.py
+    python -u /rp_handler.py
 else
     echo "CRITICAL ERROR: /rp_handler.py not found!"
     # 파일이 없으면 좀비 모드로 전환해서 터미널 접속이라도 가능하게 함
