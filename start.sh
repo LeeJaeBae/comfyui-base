@@ -5,12 +5,12 @@ echo "=== CONTAINER STARTED ==="
 echo "Date: $(date)"
 
 # 1. ComfyUI 경로 확인 (가장 많이 틀리는 곳)
-COMFYUI_DIR="/runpod-volume/runpod-slim/ComfyUI"
+COMFYUI_DIR="/workspace/runpod-slim/ComfyUI"
 
 if [ ! -d "$COMFYUI_DIR" ]; then
     echo "🚨 ERROR: ComfyUI directory NOT found at: $COMFYUI_DIR"
     echo "⚠️  Current directory structure:"
-    ls -R /runpod-volume || echo "Volume not mounted?"
+    ls -R /workspace || echo "Volume not mounted?"
     
     # 디버깅을 위해 10분간 대기 (바로 죽으면 로그 못 봄)
     echo "Sleeping 600 seconds for debugging..."
