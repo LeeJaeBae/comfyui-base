@@ -12,53 +12,31 @@
         "workflow": {
           "6": {
             "inputs": {
-              "text": "anime cat with massive fluffy fennec ears and a big fluffy tail blonde messy long hair blue eyes wearing a construction outfit placing a fancy black forest cake with candles on top of a dinner table of an old dark Victorian mansion lit by candlelight with a bright window to the foggy forest and very expensive stuff everywhere there are paintings on the walls",
+              "text": "anime cat with massive fluffy fennec ears...",
               "clip": ["30", 1]
             },
             "class_type": "CLIPTextEncode",
-            "_meta": {
-              "title": "CLIP Text Encode (Positive Prompt)"
-            }
+            "_meta": { "title": "CLIP Text Encode (Positive Prompt)" }
           },
           "8": {
-            "inputs": {
-              "samples": ["31", 0],
-              "vae": ["30", 2]
-            },
+            "inputs": { "samples": ["31", 0], "vae": ["30", 2] },
             "class_type": "VAEDecode",
-            "_meta": {
-              "title": "VAE Decode"
-            }
+            "_meta": { "title": "VAE Decode" }
           },
           "9": {
-            "inputs": {
-              "filename_prefix": "ComfyUI",
-              "images": ["8", 0]
-            },
+            "inputs": { "filename_prefix": "ComfyUI", "images": ["8", 0] },
             "class_type": "SaveImage",
-            "_meta": {
-              "title": "Save Image"
-            }
+            "_meta": { "title": "Save Image" }
           },
           "27": {
-            "inputs": {
-              "width": 512,
-              "height": 512,
-              "batch_size": 1
-            },
+            "inputs": { "width": 512, "height": 512, "batch_size": 1 },
             "class_type": "EmptySD3LatentImage",
-            "_meta": {
-              "title": "EmptySD3LatentImage"
-            }
+            "_meta": { "title": "EmptySD3LatentImage" }
           },
           "30": {
-            "inputs": {
-              "ckpt_name": "flux1-dev-fp8.safetensors"
-            },
+            "inputs": { "ckpt_name": "flux1-dev-fp8.safetensors" },
             "class_type": "CheckpointLoaderSimple",
-            "_meta": {
-              "title": "Load Checkpoint"
-            }
+            "_meta": { "title": "Load Checkpoint" }
           },
           "31": {
             "inputs": {
@@ -74,48 +52,27 @@
               "latent_image": ["27", 0]
             },
             "class_type": "KSampler",
-            "_meta": {
-              "title": "KSampler"
-            }
+            "_meta": { "title": "KSampler" }
           },
           "33": {
-            "inputs": {
-              "text": "",
-              "clip": ["30", 1]
-            },
+            "inputs": { "text": "", "clip": ["30", 1] },
             "class_type": "CLIPTextEncode",
-            "_meta": {
-              "title": "CLIP Text Encode (Negative Prompt)"
-            }
+            "_meta": { "title": "CLIP Text Encode (Negative Prompt)" }
           },
           "35": {
-            "inputs": {
-              "guidance": 3.5,
-              "conditioning": ["6", 0]
-            },
+            "inputs": { "guidance": 3.5, "conditioning": ["6", 0] },
             "class_type": "FluxGuidance",
-            "_meta": {
-              "title": "FluxGuidance"
-            }
+            "_meta": { "title": "FluxGuidance" }
           },
           "38": {
-            "inputs": {
-              "images": ["8", 0]
-            },
+            "inputs": { "images": ["8", 0] },
             "class_type": "PreviewImage",
-            "_meta": {
-              "title": "Preview Image"
-            }
+            "_meta": { "title": "Preview Image" }
           },
           "40": {
-            "inputs": {
-              "filename_prefix": "ComfyUI",
-              "images": ["8", 0]
-            },
+            "inputs": { "filename_prefix": "ComfyUI", "images": ["8", 0] },
             "class_type": "SaveImage",
-            "_meta": {
-              "title": "Save Image"
-            }
+            "_meta": { "title": "Save Image" }
           }
         }
       },
@@ -123,14 +80,14 @@
     }
   ],
   "config": {
-    "gpuTypeId": "NVIDIA GeForce RTX 5090",
+    "gpuTypeId": "ADA_24", 
     "gpuCount": 1,
     "env": [
       {
         "key": "REFRESH_WORKER",
         "value": "false"
       }
-    ],
-    "allowedCudaVersions": ["12.8"]
+    ]
+    
   }
 }

@@ -6,7 +6,7 @@
   "iconUrl": "https://cpjrphpz3t5wbwfe.public.blob.vercel-storage.com/comfyui-logo-zpFUpCZoYMn5L0Ea9hfYOKX6F9gYqx.png",
   "config": {
     "runsOn": "GPU",
-    "containerDiskInGb": 30,
+    "containerDiskInGb": 50,
     "gpuIds": "RTX_5090",
     "gpuCount": 1,
     "allowedCudaVersions": ["12.8"],
