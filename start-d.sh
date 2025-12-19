@@ -2,7 +2,7 @@
 set -e  # Exit the script if any statement returns a non-true return value
 
 COMFYUI_DIR="/workspace/runpod-slim/ComfyUI"
-VENV_DIR="$COMFYUI_DIR/.venv-cu128"
+VENV_DIR="$COMFYUI_DIR/.venv"
 FILEBROWSER_CONFIG="/root/.config/filebrowser/config.json"
 DB_FILE="/workspace/runpod-slim/filebrowser.db"
 
@@ -177,7 +177,7 @@ if [ ! -d "$COMFYUI_DIR" ] || [ ! -d "$VENV_DIR" ]; then
     # Create and setup virtual environment if not present
     if [ ! -d "$VENV_DIR" ]; then
         cd $COMFYUI_DIR
-        # Create venv with access to system packages (torch cu128, numpy, etc. pre-installed in image)
+        # Create venv with access to system packages (torch, numpy, etc. pre-installed in image)
         python3.12 -m venv --system-site-packages $VENV_DIR
         source $VENV_DIR/bin/activate
 
@@ -185,7 +185,7 @@ if [ ! -d "$COMFYUI_DIR" ] || [ ! -d "$VENV_DIR" ]; then
         python -m ensurepip --upgrade
         python -m pip install --upgrade pip
 
-        echo "Base packages (torch cu128, numpy, etc.) available from system site-packages"
+        echo "Base packages (torch, numpy, etc.) available from system site-packages"
         echo "Installing custom node dependencies..."
 
         # Install dependencies for all custom nodes

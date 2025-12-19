@@ -1,5 +1,5 @@
 # ============================================================================
-# Stage 1: Builder - Clone ComfyUI and install all Python packages
+# Stage 1: Builder - Clone ComfyUI and install all Python packages (CUDA 12.8)
 # ============================================================================
 FROM ubuntu:22.04 AS builder
 
@@ -24,7 +24,7 @@ RUN apt-get update && \
     && wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb \
     && dpkg -i cuda-keyring_1.1-1_all.deb \
     && apt-get update \
-    && apt-get install -y --no-install-recommends cuda-minimal-build-12-4 \
+    && apt-get install -y --no-install-recommends cuda-minimal-build-12-8 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm cuda-keyring_1.1-1_all.deb
@@ -49,9 +49,9 @@ RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git && \
     git clone https://github.com/kijai/ComfyUI-KJNodes && \
     git clone https://github.com/MoonGoblinDev/Civicomfy
 
-# Install PyTorch and all ComfyUI dependencies
+# Install PyTorch (stable CUDA 12.8 build) and all ComfyUI dependencies
 RUN python3.12 -m pip install --no-cache-dir \
-    torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+    torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
 
 WORKDIR /tmp/build/ComfyUI
 RUN python3.12 -m pip install --no-cache-dir -r requirements.txt && \
@@ -76,7 +76,7 @@ ENV PYTHONUNBUFFERED=1
 ENV IMAGEIO_FFMPEG_EXE=/usr/bin/ffmpeg
 ENV FILEBROWSER_CONFIG=/workspace/runpod-slim/.filebrowser.json
 
-# Update and install runtime dependencies, CUDA, and common tools
+# Update and install runtime dependencies, CUDA 12.8, and common tools
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
@@ -110,7 +110,7 @@ RUN apt-get update && \
     && wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb \
     && dpkg -i cuda-keyring_1.1-1_all.deb \
     && apt-get update \
-    && apt-get install -y --no-install-recommends cuda-minimal-build-12-4 \
+    && apt-get install -y --no-install-recommends cuda-minimal-build-12-8 \
     && apt-get install -y --no-install-recommends ffmpeg \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
@@ -147,7 +147,7 @@ WORKDIR /workspace/runpod-slim
 EXPOSE 8188 22 8888 8080
 
 # Copy and set up start script
-COPY start.sh /start.sh
+COPY start.5090.sh /start.sh
 RUN chmod +x /start.sh
 
 # Set Python 3.12 as default
