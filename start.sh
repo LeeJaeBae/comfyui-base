@@ -30,7 +30,7 @@ fi
 
 # 3. ComfyUI 실행
 echo "🚀 Starting ComfyUI..."
-python3 main.py --listen 0.0.0.0 --port 8188 --disable-auto-launch &
+python main.py --listen 0.0.0.0 --port 8188 --disable-auto-launch &
 
 # 4. ComfyUI 로딩 대기
 echo "Waiting 5 seconds..."
@@ -39,7 +39,7 @@ sleep 5
 # 5. 핸들러 실행 (rp_handler.py가 맞는지 꼭 확인!)
 echo "🚀 Starting RunPod Handler..."
 if [ -f "/rp_handler.py" ]; then
-    python3 -u /rp_handler.py
+    python -u /rp_handler.py
 else
     echo "🚨 ERROR: /rp_handler.py file missing!"
     ls -la /
