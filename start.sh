@@ -24,4 +24,4 @@ python -u main.py \
   --log-stdout 2>&1 | tee /proc/1/fd/1 &
 
 echo "Starting handler..."
-exec python -u /handler.py
+exec python3 -u /rp_handler.py

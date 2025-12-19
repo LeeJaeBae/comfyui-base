@@ -21,6 +21,7 @@ RUN pip3 install --no-cache-dir runpod requests websocket-client
 
 WORKDIR /
 COPY start.sh /start.sh
+COPY rp_handler.py /
 COPY handler.py /handler.py
 RUN chmod +x /start.sh
 
