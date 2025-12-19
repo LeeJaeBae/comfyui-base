@@ -325,13 +325,6 @@ def handler(job: Dict[str, Any]) -> Dict[str, Any]:
     }
     """
 
-    print("HANDLER START", flush=True)
-    print("QUEUE WORKFLOW", flush=True)
-    print("PROMPT ID:", prompt_id, flush=True)
-    print("WAIT WS...", flush=True)
-    print("WS DONE OR TIMEOUT", flush=True)
-    print("FETCH HISTORY", flush=True)
-    print("RETURN OUTPUTS", flush=True)
 
 
 
