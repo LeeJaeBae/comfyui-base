@@ -1,15 +1,27 @@
+#!/usr/bin/env bash
+set -euxo pipefail
+
 COMFYUI_DIR="/runpod-volume/runpod-slim/ComfyUI"
 VENV_DIR="$COMFYUI_DIR/.venv-cu128"
 
-# venv 있으면 활성화
+echo "START.SH BOOTED: $(date)"
+echo "COMFYUI_DIR=$COMFYUI_DIR"
+ls -la /handler.py || true
+ls -la "$COMFYUI_DIR" | head
+
 if [ -d "$VENV_DIR" ]; then
-  source "$VENV_DIR/bin/activate"
+  source "$VENV_DIR/bin/activate" || echo "venv activate failed, using system python"
 fi
 
 cd "$COMFYUI_DIR"
 
-# ComfyUI 실행 (8188)
-python -u main.py --listen 0.0.0.0 --port 8188 --disable-auto-launch --disable-metadata --log-stdout &
+# ComfyUI 로그를 컨테이너 stdout으로 강제
+python -u main.py \
+  --listen 0.0.0.0 \
+  --port 8188 \
+  --disable-auto-launch \
+  --disable-metadata \
+  --log-stdout 2>&1 | tee /proc/1/fd/1 &
 
-# handler 실행 (포그라운드)
+echo "Starting handler..."
 exec python -u /handler.py
