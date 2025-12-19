@@ -16,7 +16,7 @@ fi
 cd "$COMFYUI_DIR"
 
 # ComfyUI 로그를 컨테이너 stdout으로 강제
-python -u main.py \
+python3 -u main.py \
   --listen 0.0.0.0 \
   --port 8188 \
   --disable-auto-launch \
