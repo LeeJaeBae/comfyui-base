@@ -1,41 +1,23 @@
 {
-  "title": "ComfyUI I2V",
-  "description": "Run ComfyUI from Network Volume and serve i2v via handler",
+  "title": "ComfyUI",
+  "description": "Generate images with ComfyUI using FLUX.1-dev (fp8)",
   "type": "serverless",
-  "category": "video",
+  "category": "image",
   "iconUrl": "https://cpjrphpz3t5wbwfe.public.blob.vercel-storage.com/comfyui-logo-zpFUpCZoYMn5L0Ea9hfYOKX6F9gYqx.png",
   "config": {
     "runsOn": "GPU",
-    "containerDiskInGb": 50,
+    "containerDiskInGb": 20,
     "gpuIds": "ADA_24",
     "gpuCount": 1,
-    "allowedCudaVersions": ["12.8"],
+    "allowedCudaVersions": ["12.7", "12.6"],
     "env": [
       {
         "key": "REFRESH_WORKER",
         "input": {
           "name": "Refresh Worker",
           "type": "boolean",
-          "description": "Stop after each job to ensure clean state",
-          "default": true
-        }
-      },
-      {
-        "key": "COMFY_HOST",
-        "input": {
-          "name": "Comfy Host",
-          "type": "string",
-          "description": "ComfyUI host",
-          "default": "127.0.0.1"
-        }
-      },
-      {
-        "key": "COMFY_PORT",
-        "input": {
-          "name": "Comfy Port",
-          "type": "string",
-          "description": "ComfyUI port",
-          "default": "8188"
+          "description": "When enabled, the worker will stop after each finished job to have a clean state",
+          "default": false
         }
       }
     ]
