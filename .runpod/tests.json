@@ -9,13 +9,7 @@
             "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAMklEQVR4nGI5ZdXAQEvARFPTRy0YtWDUglELRi0YtWDUglELRi0YtWDUAioCQAAAAP//E24Bx3jUKuYAAAAASUVORK5CYII="
           }
         ],
-        "workflow": {
-          
-            "input": {
-                "prompt": "Hey there!"
-            }
-        
-        }
+        "workflow": "test_input.json"
       },
       "timeout": 300000
     }
